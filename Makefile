@@ -5,6 +5,8 @@ MANDIR   = $(DESTDIR)/usr/share/man/man1
 EXAMPLES = $(DESTDIR)/usr/share/pov2c/examples
 OBJS     = xml2c_delay.o xml2c_read.o xml2c_write.o logging.o xml2c.o xml2c_negotiate.o xml2c_var.o utils.o
 
+#CC = clang++-3.6
+#LD = clang++-3.6
 CC = g++
 LD = g++
 
@@ -12,7 +14,7 @@ INC += -I/usr/include/libxml2
 LIBS = -lpcre -lxml2
 
 CFLAGS += -O3 -g -D_FORTIFY_SOURCE=2 -fstack-protector -fPIE
-CFLAGS += -Werror -Wno-variadic-macros 
+#CFLAGS += -Werror -Wno-variadic-macros 
 CFLAGS += -DRANDOM_UID -DHAVE_SETRESGID
 CFLAGS += -Wno-delete-non-virtual-dtor
 # CFLAGS += -fsanitize=undefined-trap -fsanitize-undefined-trap-on-error

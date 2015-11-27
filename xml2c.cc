@@ -44,7 +44,8 @@ using std::vector;
 
 #include "reasons.h"
 
-#define CGC_REPLAY_DTD "/usr/share/cgc-docs/cfe-pov.dtd"
+//#define CGC_REPLAY_DTD "/usr/share/cgc-docs/cfe-pov.dtd"
+#define CGC_REPLAY_DTD "/usr/share/cgc-docs/replay.dtd"
 
 vector<Action*> pov;
 
@@ -175,7 +176,7 @@ void usage(const char *cmd, int reason) {
    fprintf(stderr, "usage: %s [options] -x xml-file\n", cmd);
    fprintf(stderr, "  -h Display this usage statement\n");
    fprintf(stderr, "  -o Output file name.  Defaults to stdout\n");
-   fprintf(stderr, "  -v verify the xml against cfe-pov.dtd\n");
+   fprintf(stderr, "  -v verify the xml against replay.dtd\n");
    fprintf(stderr, "  -t Timeout alarm value for parsing xml.\n");
    fprintf(stderr, "  -x xml pov file.\n");
    exit(reason);
@@ -280,7 +281,7 @@ int main(int argc, char **argv) {
          }
          else {
             xmlNode *pov = xmlDocGetRootElement(doc);
-            if (pov != NULL && strcmp((char*)pov->name, "cfepov") == 0) {
+            if (pov != NULL && strcmp((char*)pov->name, "pov") == 0) {
                bool success = buildPoV(pov, echoEnable);
                alarm(0);  //cancel alarm for xml parsing
                signal(SIGALRM, SIG_DFL);
